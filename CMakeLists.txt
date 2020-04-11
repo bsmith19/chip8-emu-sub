@@ -7,10 +7,11 @@ project(chip8-emu-sub)
 # enable unit tests for all sub folders
 enable_testing()
 
+# add third_party directories
+add_subdirectory(thirdparty/google-test)
+
 # add sub project directories
 add_subdirectory(cpu)
 add_subdirectory(renderer)
 add_subdirectory(emulator)
-
-# add third_party directories
-add_subdirectory(thirdparty/google-test)
+add_subdirectory(test)
