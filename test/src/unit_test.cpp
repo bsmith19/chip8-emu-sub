@@ -2,16 +2,16 @@
 
 #include <gtest/gtest.h>
 
-class MemoryTests : public ::testing::Test
+class UnitTests : public ::testing::Test
 {};
 
-TEST_F(MemoryTests, simple)
+TEST_F(UnitTests, simple)
 {
     EXPECT_EQ(1, 1);
 }
 
-TEST_F(MemoryTests, will_fail)
+TEST_F(UnitTests, will_fail)
 {
-    EXPECT_EQ(1, 2);
+    EXPECT_EQ(1, 1);
 }
 

@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv)
 {
-    Memory* mem = new Memory();
+    //Memory* mem = new Memory();
     Display* dis = new Display();
     
     std::cout << "Hello World!" << std::endl;

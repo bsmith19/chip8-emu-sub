@@ -4,6 +4,7 @@ project(test)
 #Test file list
 set(SOURCES
     src/unit_test.cpp
+    src/memory-test.cpp
     src/main.cpp
 )
 
