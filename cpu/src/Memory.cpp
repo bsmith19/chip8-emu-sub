@@ -13,7 +13,7 @@ Memory::~Memory()
     delete mMemory;
 }
 
-bool Memory::LoadRom(std::unique_ptr<unsigned char>& romData, int size)
+bool Memory::LoadRom(std::unique_ptr<char>& romData, int size)
 {
     // Need to check if the game can actually fit in memory first..
     int rom_available_size = mMemorySize - mMemoryMaps[Rom];

@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <cpu/Memory.h>
+#include <fstream>
 
 class MemoryTests : public ::testing::Test
 {};
@@ -40,4 +41,71 @@ TEST_F(MemoryTests, load_font_test)
     
     //Cleanup
     delete mem;
+}
+
+TEST_F(MemoryTests, load_rom_test)
+{
+    //Create memory map
+    std::map<EMemoryPartitions, int> map;
+    map.insert({ Font, 0 });
+    map.insert({ Rom, 511 });
+
+    //load rom from file
+    std::ifstream aFile;
+    aFile.open("pong2.c8", std::ios::binary | std::ios::ate);
+
+    //Verify files if found and open
+    EXPECT_EQ(aFile.is_open(), true);
+
+    std::streampos size = aFile.tellg();
+    EXPECT_FALSE(size == 0);
+
+    //Set to start of file..
+    aFile.seekg(0, std::ios::beg);
+
+    //load from file
+    char* romData = new char[size];
+    aFile.read(romData, size);
+    std::unique_ptr<char> rom(romData);
+
+    //Create memory and load rom
+    Memory* mem = new Memory(1024, map);
+    EXPECT_EQ(mem->LoadRom(rom, size), true);
+
+    delete mem;
+
+}
+
+TEST_F(MemoryTests, get_opecode_test)
+{
+    //Create memory map
+    std::map<EMemoryPartitions, int> map;
+    map.insert({ Font, 0 });
+    map.insert({ Rom, 512 });
+
+    //load rom from file(initial pos is EOF due to ios::ate)
+    std::ifstream aFile;
+    aFile.open("pong2.c8", std::ios::binary | std::ios::ate);
+
+    //Verify files if found and open
+    EXPECT_EQ(aFile.is_open(), true);
+
+    std::streampos size = aFile.tellg();
+    EXPECT_FALSE(size == 0);
+
+    //Set to start of file..
+    aFile.seekg(0, std::ios::beg);
+
+    //load from file
+    char* romData = new char[size];
+    aFile.read(romData, size);
+    std::unique_ptr<char> rom(romData);
+
+    //Create memory and load rom
+    Memory* mem = new Memory(1024, map);
+    EXPECT_EQ(mem->LoadRom(rom, size), true);
+
+    //Get first opcode of rom, 0x200(512) is begining of program space
+    unsigned short opcode = mem->GetOpCode(0x200);
+    EXPECT_EQ(opcode, 0x22FC);
 }

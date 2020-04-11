@@ -14,6 +14,11 @@ set(SOURCES
 #add unit tests executable
 add_executable(tests ${SOURCES})
 
+#copy test data to project dir
+configure_file(data/invaders.c8 ${CMAKE_CURRENT_BINARY_DIR}/invaders.c8 COPYONLY)
+configure_file(data/pong2.c8 ${CMAKE_CURRENT_BINARY_DIR}/pong2.c8 COPYONLY)
+configure_file(data/tetris.c8 ${CMAKE_CURRENT_BINARY_DIR}/tetris.c8 COPYONLY)
+
 target_link_libraries(tests
     sub::renderer
     sub::cpu
