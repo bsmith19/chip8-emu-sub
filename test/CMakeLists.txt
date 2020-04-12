@@ -5,6 +5,8 @@ project(test)
 set(SOURCES
     src/unit_test.cpp
     src/memory-test.cpp
+    src/stack-test.cpp
+    src/cpu-test.cpp
     src/main.cpp
 )
 

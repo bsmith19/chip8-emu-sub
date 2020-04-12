@@ -3,7 +3,28 @@
 #include <fstream>
 
 class MemoryTests : public ::testing::Test
-{};
+{
+public:
+    void SetUp();
+    void TearDown();
+protected:
+    std::map<EMemoryPartitions, int> map;
+    Memory* mem;
+};
+
+void MemoryTests::SetUp()
+{
+    //Setup Maps
+    map.insert({ Font, 0 });
+    map.insert({ Rom, 512 });
+
+    mem = new Memory(1024, map);
+}
+
+void MemoryTests::TearDown()
+{
+    delete mem;
+}
 
 TEST_F(MemoryTests, load_font_test)
 {
@@ -30,25 +51,13 @@ TEST_F(MemoryTests, load_font_test)
     //convert to unique pointer
     std::unique_ptr<unsigned char> uFont (mem_raw);
     
-    //Create memory map
-    std::map<EMemoryPartitions, int> map;
-    map.insert({Font, 0});
-    map.insert({Rom, 511});
-    
-    //Create memory and load font
-    Memory* mem = new Memory(1024, map);
+    //Load the font
     EXPECT_EQ(mem->LoadFont(uFont, 80), true);
-    
-    //Cleanup
-    delete mem;
+
 }
 
 TEST_F(MemoryTests, load_rom_test)
 {
-    //Create memory map
-    std::map<EMemoryPartitions, int> map;
-    map.insert({ Font, 0 });
-    map.insert({ Rom, 511 });
 
     //load rom from file
     std::ifstream aFile;
@@ -68,21 +77,13 @@ TEST_F(MemoryTests, load_rom_test)
     aFile.read(romData, size);
     std::unique_ptr<char> rom(romData);
 
-    //Create memory and load rom
-    Memory* mem = new Memory(1024, map);
+    // Load rom
     EXPECT_EQ(mem->LoadRom(rom, size), true);
-
-    delete mem;
 
 }
 
 TEST_F(MemoryTests, get_opecode_test)
 {
-    //Create memory map
-    std::map<EMemoryPartitions, int> map;
-    map.insert({ Font, 0 });
-    map.insert({ Rom, 512 });
-
     //load rom from file(initial pos is EOF due to ios::ate)
     std::ifstream aFile;
     aFile.open("pong2.c8", std::ios::binary | std::ios::ate);
@@ -101,8 +102,7 @@ TEST_F(MemoryTests, get_opecode_test)
     aFile.read(romData, size);
     std::unique_ptr<char> rom(romData);
 
-    //Create memory and load rom
-    Memory* mem = new Memory(1024, map);
+    //Load rom
     EXPECT_EQ(mem->LoadRom(rom, size), true);
 
     //Get first opcode of rom, 0x200(512) is begining of program space
