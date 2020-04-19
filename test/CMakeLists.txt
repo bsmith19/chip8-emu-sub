@@ -11,8 +11,11 @@ set(SOURCES
 )
 
 set(INST_SOURCES
-    src/instructions/InstAssign_8XY0_test.cpp
-    src/instructions/InstBcd_FX33_test.cpp
+    src/instructions/InstAssign_8XY0-test.cpp
+    src/instructions/InstBcd_FX33-test.cpp
+    src/instructions/InstBitOp_8XY1-test.cpp
+    src/instructions/InstBitOp_8XY2-test.cpp
+    src/instructions/InstBitOp_8XY3-test.cpp
 )
 
 #Find the GTest package

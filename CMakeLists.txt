@@ -4,7 +4,7 @@ if (POLICY CMP0025)
 endif ()
 
 #Set cpp standard as C++11
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 # set the minimum cmake version first
 cmake_minimum_required(VERSION 3.5)

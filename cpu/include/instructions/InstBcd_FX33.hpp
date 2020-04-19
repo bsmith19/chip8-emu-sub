@@ -3,6 +3,8 @@
 #include "instructions/Inst.h"
 #include "cpu/CpuData.h"
 
+#include <cmath>
+
 class InstBcd_FX33 : Inst
 {
 public:
@@ -16,8 +18,19 @@ public:
         // the middle digit at I plus 1, and the least significant digit at I plus 2. 
         // (In other words, take the decimal representation of VX, place the hundreds digit in memory at location in I, 
         // the tens digit at location I+1, and the ones digit at location I+2.)
+        
+        //Pull value out of Vx
+        int vX = systemData->systemCpuRegisters[(mOpCode & 0x0F00) >> 8];
 
-        *systemData->systemMemory[static_cast<int>(systemData->systemIndexRegister)] = systemData->systemCpuRegisters[(mOpCode & 0x0F00) >> 8] / 100;
+        systemData->systemMemory->SetByte(static_cast<int>(systemData->systemIndexRegister), std::floor(vX / 100));
+        systemData->systemMemory->SetByte(static_cast<int>(systemData->systemIndexRegister + 1), static_cast<int>(std::floor(vX / 10)) % 10);
+        systemData->systemMemory->SetByte(static_cast<int>(systemData->systemIndexRegister + 2), vX % 10);
+        
+        //increment program counter
+        systemData->systemProgramCounter += 2;
+        
+        return true;
+
     }
 
 };

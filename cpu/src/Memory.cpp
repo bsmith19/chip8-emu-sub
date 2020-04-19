@@ -60,7 +60,18 @@ unsigned short Memory::GetOpCode(unsigned short programCounter)
     return opCode;
 }
 
-unsigned char Memory::operator[](int index) const
+unsigned char Memory::GetByte(int pos)
 {
-    return mMemory[index];
+    return mMemory[pos];
+}
+
+bool Memory::SetByte(int pos, unsigned char val)
+{
+    if(pos < mMemorySize && pos >= 0)
+    {
+        mMemory[pos] = val;
+        return true;
+    }
+    
+    return false;
 }

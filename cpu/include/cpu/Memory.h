@@ -22,7 +22,8 @@ public:
     bool LoadRom(std::unique_ptr<char>& rom, int size);
     unsigned short GetOpCode(unsigned short programCounter);
 
-    unsigned char operator [](int index) const;
+    unsigned char GetByte(int pos);
+    bool SetByte(int pos, unsigned char val);
     
 private:
     int mMemorySize;
