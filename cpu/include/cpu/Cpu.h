@@ -2,21 +2,8 @@
 #define __CPU_H__
 
 #include <memory>
-#include "cpu/Memory.h"
-#include "cpu/Stack.h"
 
-
-struct CpuData
-{
-    std::unique_ptr<Stack> systemStack;
-    std::unique_ptr<Memory> systemMemory;
-    std::unique_ptr<unsigned char> systemCpuRegisters;
-    unsigned short systemProgramCounter;
-    unsigned short systemIndexRegister;
-
-    unsigned char systemTimer;
-    unsigned char delayTimer;
-};
+struct CpuData;
 
 class Cpu
 {

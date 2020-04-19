@@ -1,4 +1,6 @@
 #include "cpu/Cpu.h"
+#include "cpu/CpuData.h"
+#include "instructions/InstAssign_8XY0.hpp"
 
 Cpu::Cpu(int stackSize, int memorySize, int programSpace)
 {
@@ -16,7 +18,7 @@ Cpu::Cpu(int stackSize, int memorySize, int programSpace)
     //Create Other System componenets
     mSystemStorage->systemStack = std::make_unique<Stack>(stackSize);
     mSystemStorage->systemMemory = std::make_unique<Memory>(memorySize, memMap);
-    mSystemStorage->systemCpuRegisters = std::unique_ptr<unsigned char>(new unsigned char[16]);
+    mSystemStorage->systemCpuRegisters = std::vector<unsigned char>(16);
 }
 
 Cpu::~Cpu()
@@ -30,7 +32,9 @@ bool Cpu::EmulateCycle()
     unsigned short opcode = mSystemStorage->systemMemory->GetOpCode(mSystemStorage->systemProgramCounter);
 
     //Pick the correct instruction
-
+    InstAssign_8XY0* inst = new InstAssign_8XY0(0x8220);
+    inst->Handle(mSystemStorage);
+    delete inst;
     //update the timers
 
     return true;

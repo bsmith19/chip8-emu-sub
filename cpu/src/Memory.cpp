@@ -59,3 +59,8 @@ unsigned short Memory::GetOpCode(unsigned short programCounter)
     unsigned short opCode = op1 << 8 | op2;
     return opCode;
 }
+
+unsigned char Memory::operator[](int index) const
+{
+    return mMemory[index];
+}

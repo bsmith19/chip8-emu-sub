@@ -10,11 +10,16 @@ set(SOURCES
     src/main.cpp
 )
 
+set(INST_SOURCES
+    src/instructions/InstAssign_8XY0_test.cpp
+    src/instructions/InstBcd_FX33_test.cpp
+)
+
 #Find the GTest package
 #find_package(Gtest REQUIRED)
 
 #add unit tests executable
-add_executable(tests ${SOURCES})
+add_executable(tests ${SOURCES} ${INST_SOURCES})
 
 #copy test data to project dir
 if (APPLE)
