@@ -24,6 +24,7 @@ set(INST_HEADERS
     include/instructions/InstBitOp_8XY1.hpp
     include/instructions/InstBitOp_8XY2.hpp
     include/instructions/InstBitOp_8XY3.hpp
+    include/instructions/InstBitOp_8XY6.hpp
 )
 
 #create the library
