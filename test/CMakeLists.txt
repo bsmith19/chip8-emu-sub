@@ -17,6 +17,8 @@ set(INST_SOURCES
     src/instructions/InstBitOp_8XY2-test.cpp
     src/instructions/InstBitOp_8XY3-test.cpp
     src/instructions/InstBitOp_8xy6-test.cpp
+    src/instructions/InstBitOp_8xye-test.cpp
+    src/instructions/InstCond_3xnn-test.cpp
 )
 
 #Find the GTest package
