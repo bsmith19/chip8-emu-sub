@@ -14,8 +14,6 @@ public:
     {
         //Must shift 8 in CpuRegister to make if X instead of X0000000 for the index
         //Skips the next instruction if vX == NN
-        int x = (mOpCode & 0x00F0) << 4 | (mOpCode & 0x000F);
-        int y = systemData->systemCpuRegisters[(mOpCode & 0x0F00) >> 8];
         if(systemData->systemCpuRegisters[(mOpCode & 0x0F00) >> 8] == (mOpCode & 0x00FF))
         {
             //skip 4 bytes instead of 2

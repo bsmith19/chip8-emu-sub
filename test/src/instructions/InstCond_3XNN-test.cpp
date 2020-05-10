@@ -33,18 +33,34 @@ void InstCond_3XNNTests::TearDown()
 {
 }
 
-TEST_F(InstCond_3XNNTests, handle_test)
+TEST_F(InstCond_3XNNTests, handle_test_pass)
 {
     //Setup initial register values
     mSystemData->systemCpuRegisters[2] = 7;
-    mSystemData->systemCpuRegisters[1] = 26;
+    mSystemData->systemCpuRegisters[0x1] = 0x20;
     
     InstCond_3XNN* in = new InstCond_3XNN(0x3120);
     EXPECT_TRUE(in->Handle(mSystemData));
     
     EXPECT_EQ(mSystemData->systemCpuRegisters[2], 7);
-    EXPECT_EQ(mSystemData->systemCpuRegisters[1], 26);
+    EXPECT_EQ(mSystemData->systemCpuRegisters[0x1], 0x20);
     EXPECT_EQ(mSystemData->systemProgramCounter, 0x200 + 4);
+    
+    delete in;
+}
+
+TEST_F(InstCond_3XNNTests, handle_test_fail)
+{
+    //Setup initial register values
+    mSystemData->systemCpuRegisters[2] = 7;
+    mSystemData->systemCpuRegisters[0x1] = 0x21;
+    
+    InstCond_3XNN* in = new InstCond_3XNN(0x3120);
+    EXPECT_TRUE(in->Handle(mSystemData));
+    
+    EXPECT_EQ(mSystemData->systemCpuRegisters[2], 7);
+    EXPECT_EQ(mSystemData->systemCpuRegisters[0x1], 0x21);
+    EXPECT_EQ(mSystemData->systemProgramCounter, 0x200 + 2);
     
     delete in;
 }
