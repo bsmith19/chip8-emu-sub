@@ -32,6 +32,27 @@ set(INST_HEADERS
     include/instructions/InstCond_9XY0.hpp
     include/instructions/InstConst_6XNN.hpp
     include/instructions/InstConst_7XNN.hpp
+    include/instructions/InstDisp_DXYN.hpp
+    include/instructions/InstDisplay_00E0.hpp
+    include/instructions/InstFlow_00EE.hpp
+    include/instructions/InstFlow_1NNN.hpp
+    include/instructions/InstFlow_2NNN.hpp
+    include/instructions/InstFlow_BNNN.hpp
+    include/instructions/InstKeyOp_EX9E.hpp
+    include/instructions/InstKeyOp_EXA1.hpp
+    include/instructions/InstKeyOp_FX0A.hpp
+    include/instructions/InstMath_8XY4.hpp
+    include/instructions/InstMath_8XY5.hpp
+    include/instructions/InstMath_8XY7.hpp
+    include/instructions/InstMem_ANNN.hpp
+    include/instructions/InstMem_FX1E.hpp
+    include/instructions/InstMem_FX29.hpp
+    include/instructions/InstMem_FX55.hpp
+    include/instructions/InstMem_FX65.hpp
+    include/instructions/InstRand_CXNN.hpp
+    include/instructions/InstSound_FX18.hpp
+    include/instructions/InstTimer_FX07.hpp
+    include/instructions/InstTimer_FX15.hpp
 )
 
 #create the library

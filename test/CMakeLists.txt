@@ -24,6 +24,27 @@ set(INST_SOURCES
     src/instructions/InstCond_9xy0-test.cpp
     src/instructions/InstConst_6xnn-test.cpp
     src/instructions/InstConst_7xnn-test.cpp
+    src/instructions/InstDisp_DXYN-test.cpp
+    src/instructions/InstDisplay_00E0-test.cpp
+    src/instructions/InstFlow_00EE-test.cpp
+    src/instructions/InstFlow_1NNN-test.cpp
+    src/instructions/InstFlow_2NNN-test.cpp
+    src/instructions/InstFlow_BNNN-test.cpp
+    src/instructions/InstKeyOp_EX9E-test.cpp
+    src/instructions/InstKeyOp_EXA1-test.cpp
+    src/instructions/InstKeyOp_FX0A-test.cpp
+    src/instructions/InstMath_8XY4-test.cpp
+    src/instructions/InstMath_8XY5-test.cpp
+    src/instructions/InstMath_8XY7-test.cpp
+    src/instructions/InstMem_ANNN-test.cpp
+    src/instructions/InstMem_FX1E-test.cpp
+    src/instructions/InstMem_FX29-test.cpp
+    src/instructions/InstMem_FX55-test.cpp
+    src/instructions/InstMem_FX65-test.cpp
+    src/instructions/InstRand_CXNN-test.cpp
+    src/instructions/InstSound_FX18-test.cpp
+    src/instructions/InstTimer_FX07-test.cpp
+    src/instructions/InstTimer_FX15-test.cpp
 )
 
 #Find the GTest package
