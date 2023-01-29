@@ -36,6 +36,12 @@ void InstFlow_00EETests::TearDown()
 
 TEST_F(InstFlow_00EETests, handle_test_pass)
 {
+    EXPECT_TRUE(mSystemData->systemStack->PushStack(20));
+    
+    InstFlow_00EE* inst = new InstFlow_00EE(0x0045);
+    
+    EXPECT_TRUE(inst->Handle(mSystemData));
+    EXPECT_EQ(mSystemData->systemProgramCounter, 22);
 }
 
 
